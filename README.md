@@ -1,127 +1,37 @@
-# React Express
+# judo-heroes
+A simple application built to showcase Universal JavaScript with Node.js and React.
 
-## Why?
+## 😱 NEW VERSION AVAILABLE
 
-React has a problem. While the proliferation of JavaScript libraries, frameworks, and tools (JavaScript fatigue) is fantastic for the web development ecosystem, it can be extremely intimidating for beginners to get started.
+A new version of the codebase is available in a dedicated repository: https://github.com/lmammino/judo-heroes-2
 
-I've created this all-in-one guide for beginners to get an opinionated walkthrough from start to finish: `create-react-app`, `npm`, `webpack`, `babel`, ES2015, ES2016, JSX, React, Redux, CSS-in-JS, and more.
+The new version includes the following changes and improvements:
 
-Proudly presenting, [React Express!](http://www.react.express)
+  - Updated to `Webpack 2`, `React 15.4`, `React Router 4` and `Express 5`
+  - Using pure components where possible
+  - Better structure of componenents
+  - Top down data passing
+  
+Be sure to ⬇️ **checkout** and ⭐️ **star** the [new repository](https://github.com/lmammino/judo-heroes-2) if you are interested in fresher code.
 
-## Table of Contents
 
-[Environment](http://www.react.express/environment)
-* [Quick Start](http://www.react.express/quick_start)
-* [Setup & Build Tools](http://www.react.express/setup)
-  * [npm](http://www.react.express/npm)
-  * [Webpack](http://www.react.express/webpack)
-  * [Babel](http://www.react.express/babel)
-  * [React](http://www.react.express/react_setup)
+## The tutorial
+This application was created to support a "Universal Javascript" (aka Isomorphic) tutorial published on [Scotch.io](https://scotch.io):
 
-[Modern JavaScript](http://www.react.express/modern_javascript)
-* [ES2015](http://www.react.express/es2015)
-  * [Block Scoped Declarations](http://www.react.express/block_scoped_declarations)
-  * [Fat Arrow Functions](http://www.react.express/fat_arrow_functions)
-  * [Destructuring](http://www.react.express/destructuring)
-  * [Imports and Exports](http://www.react.express/imports_and_exports)
-  * [Default Parameters](http://www.react.express/default_parameters)
-  * [Classes](http://www.react.express/classes)
-  * [Dynamic Object Keys](http://www.react.express/dynamic_object_keys)
-  * [Array Spread](http://www.react.express/array_spread)
-* [ES2016 and More](http://www.react.express/es2016)
-  * [Static Class Properties](http://www.react.express/static_class_properties)
-  * [Class Instance Properties](http://www.react.express/class_instance_properties)
-  * [Bound Instance Methods](http://www.react.express/bound_instance_methods)
-  * [Object Spread](http://www.react.express/object_spread)
-  * [Async and Await](http://www.react.express/async_await)
-* [JSX](http://www.react.express/jsx)
+[React on the Server for Beginners: Build a Universal React and Node App](https://scotch.io/tutorials/react-on-the-server-for-beginners-build-a-universal-react-and-node-app)
 
-[React Top-Level API](http://www.react.express/react_api)
-* [React Components](http://www.react.express/components)
-* [Component API](http://www.react.express/component_api)
-* [Lifecycle API](http://www.react.express/lifecycle_api)
+[![React on the Server for Beginners: Build a Universal React and Node App](https://scotch.io/wp-content/uploads/2016/08/MRQddiUQsyvQrhgfGppw_scotch-featured-image-guidelines.png)](https://scotch.io/tutorials/react-on-the-server-for-beginners-build-a-universal-react-and-node-app)
 
-[Styling](http://www.react.express/styling)
 
-[Fundamentals](http://www.react.express/fundamentals)
-* [Performance Model](http://www.react.express/performance_model)
-* [Event Handling](http://www.react.express/event_handling)
-* [Input Handling](http://www.react.express/input_handling)
-* [Conditional Rendering](http://www.react.express/conditional_rendering)
-* [Lists and Keys](http://www.react.express/lists_and_keys)
-* [Refs and the DOM](http://www.react.express/refs_and_the_dom)
+## Want to know more about Node.js, React and Universal Javascript?
+If you want to know more about Universal Javascript and improve your application even more (e.g. by adding Universal Data Retrival using REST APIs) I definitely recommend to read the chapter Universal JavaScript for Web Applications on my book [Node.js Design Patterns Second Edition (Packt)](https://www.nodejsdesignpatterns.com/):
 
-[Data Management](http://www.react.express/data)
-* [Component State](http://www.react.express/data_component_state)
-* [Redux](http://www.react.express/redux)
-  * [React Redux](http://www.react.express/react_redux)
+[![Node.js Design Patterns Second Edition by Mario Casciaro and Luciano Mammino](https://cdn.scotch.io/22/v1m65E8Te2tboZO7MvOA_book-cover-nodejs-design-patterns.png)](https://www.nodejsdesignpatterns.com/)
 
 ## Contributing
-
-If you'd like to contribute, follow along below to get the repo set up.
-
-## Installation
-
-```bash
-yarn
-```
-
-OR
-
-```bash
-npm install
-```
-
-## Running Dev Server
-
-#### Client development
-
-For working on the client (new pages, etc):
-
-```bash
-npm run dev:client
-```
-
-This will run the webpack dev server with hot reload.
-
-#### Server development
-
-For working on the server:
-
-```bash
-npm run dev:server
-```
-
-This will build the server bundle for server-side rendering.
-
-#### Both
-
-For working on both client and server:
-
-```bash
-npm run dev
-```
-
-## Building and Running Production Server
-
-```bash
-npm run build
-npm run start
-```
-
-## Contributing
-
-Make sure to lint and prettify your code!
-
-```bash
-npm run format
-npm run test
-```
+Everyone is very welcome to contribute to this project.
+You can contribute just by submitting bugs or suggesting improvements by
+[opening an issue](https://github.com/lmammino/judo-heroes/issues) or by [sending a pull request](https://github.com/lmammino/judo-heroes/pulls).
 
 ## License
-
-MIT, Copyright (c) 2017 Devin Abbott
-
-## Author
-
-Devin Abbott, [@devinaabbott](http://twitter.com/devinaabbott)
+Licensed under [MIT License](LICENSE). © Luciano Mammino.

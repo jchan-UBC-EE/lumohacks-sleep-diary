@@ -1,60 +1,127 @@
-# Behold the ReactJS + ExpressJS Boilerplate
+# React Express
 
-I wrote an [article] about this repo which explains the structure.
+## Why?
 
-This is a boilerplate to use ReactJS, ExpressJS, Redux and React Router v4 in a project.
+React has a problem. While the proliferation of JavaScript libraries, frameworks, and tools (JavaScript fatigue) is fantastic for the web development ecosystem, it can be extremely intimidating for beginners to get started.
 
-- [ReactJS] - The state based framework for your Views
-- [React Router v4] - For routing to different paths
-- [Redux] - Redux manages your state
-- [Babel] - The compiler to compile your JS files with es6, es7, JSX syntax to regular javascript
-- [Webpack] - The module binder which takes all your JS files from different directories and compiles them into a single app.bundle.js (you can change the filename of course) so you can include it in a HTML page
-- [ExpressJS] - The node framework to serve your views to the world when they hit the server at example.com or example.com/awesome.html
+I've created this all-in-one guide for beginners to get an opinionated walkthrough from start to finish: `create-react-app`, `npm`, `webpack`, `babel`, ES2015, ES2016, JSX, React, Redux, CSS-in-JS, and more.
 
+Proudly presenting, [React Express!](http://www.react.express)
 
-# Installation
+## Table of Contents
 
-Node Version: v8.3.0
+[Environment](http://www.react.express/environment)
+* [Quick Start](http://www.react.express/quick_start)
+* [Setup & Build Tools](http://www.react.express/setup)
+  * [npm](http://www.react.express/npm)
+  * [Webpack](http://www.react.express/webpack)
+  * [Babel](http://www.react.express/babel)
+  * [React](http://www.react.express/react_setup)
 
-Just clone this repo or download the zip file. `cd` into the directory and run
+[Modern JavaScript](http://www.react.express/modern_javascript)
+* [ES2015](http://www.react.express/es2015)
+  * [Block Scoped Declarations](http://www.react.express/block_scoped_declarations)
+  * [Fat Arrow Functions](http://www.react.express/fat_arrow_functions)
+  * [Destructuring](http://www.react.express/destructuring)
+  * [Imports and Exports](http://www.react.express/imports_and_exports)
+  * [Default Parameters](http://www.react.express/default_parameters)
+  * [Classes](http://www.react.express/classes)
+  * [Dynamic Object Keys](http://www.react.express/dynamic_object_keys)
+  * [Array Spread](http://www.react.express/array_spread)
+* [ES2016 and More](http://www.react.express/es2016)
+  * [Static Class Properties](http://www.react.express/static_class_properties)
+  * [Class Instance Properties](http://www.react.express/class_instance_properties)
+  * [Bound Instance Methods](http://www.react.express/bound_instance_methods)
+  * [Object Spread](http://www.react.express/object_spread)
+  * [Async and Await](http://www.react.express/async_await)
+* [JSX](http://www.react.express/jsx)
 
-    npm install
+[React Top-Level API](http://www.react.express/react_api)
+* [React Components](http://www.react.express/components)
+* [Component API](http://www.react.express/component_api)
+* [Lifecycle API](http://www.react.express/lifecycle_api)
 
-## Developing App with [Hot Reload]
-To develop your own react application, you can take advantage of React Hot Loader and Webpack Dev Server. To develop app with hot reload:
+[Styling](http://www.react.express/styling)
 
-    npm run dev
+[Fundamentals](http://www.react.express/fundamentals)
+* [Performance Model](http://www.react.express/performance_model)
+* [Event Handling](http://www.react.express/event_handling)
+* [Input Handling](http://www.react.express/input_handling)
+* [Conditional Rendering](http://www.react.express/conditional_rendering)
+* [Lists and Keys](http://www.react.express/lists_and_keys)
+* [Refs and the DOM](http://www.react.express/refs_and_the_dom)
 
-Now you can access your react application on http://localhost:8080
+[Data Management](http://www.react.express/data)
+* [Component State](http://www.react.express/data_component_state)
+* [Redux](http://www.react.express/redux)
+  * [React Redux](http://www.react.express/react_redux)
 
-## Production build and Deploy
-To make a production build of your project, run the following commands
+## Contributing
 
-    npm run build
-  
-This will create create two files: `index.js` in `server/public/js` and `server.js` in `server/bin`.
+If you'd like to contribute, follow along below to get the repo set up.
 
-`server.js` will be used for serving the application on port 3000 and `index.js` is the actual react app itself.
+## Installation
 
-Finally run
+```bash
+yarn
+```
 
-    npm start
+OR
 
-The you will be able to access this app from http://localhost:3000.
+```bash
+npm install
+```
 
-To get a distributable tarball of your application, run this command
+## Running Dev Server
 
-    npm pack
+#### Client development
 
-Remember that you have to run `npm run build` before doing this. This will create a tar.gz file in your root folder. The contents in this file is deployable. All you need to do is copy the contents inside package folder inside this tar.gz file to your server and run the app with something like [pm2].
+For working on the client (new pages, etc):
 
+```bash
+npm run dev:client
+```
 
-[ReactJS]: <https://facebook.github.io/react/>
-[Babel]: <https://babeljs.io/>
-[Webpack]: <https://webpack.github.io/>
-[React Router v4]: <https://reacttraining.com/react-router/>
-[Hot Reload]: <https://stackoverflow.com/questions/41428954>
-[ExpressJS]: <http://expressjs.com/>
-[Redux]: <http://redux.js.org/>
-[pm2]: <https://github.com/Unitech/pm2>
-[article]: <https://medium.com/@tahnik.mstsn/reactjs-expressjs-with-hot-reloading-and-server-side-rendering-901a01ea2711># lumohacks-sleep-diary
+This will run the webpack dev server with hot reload.
+
+#### Server development
+
+For working on the server:
+
+```bash
+npm run dev:server
+```
+
+This will build the server bundle for server-side rendering.
+
+#### Both
+
+For working on both client and server:
+
+```bash
+npm run dev
+```
+
+## Building and Running Production Server
+
+```bash
+npm run build
+npm run start
+```
+
+## Contributing
+
+Make sure to lint and prettify your code!
+
+```bash
+npm run format
+npm run test
+```
+
+## License
+
+MIT, Copyright (c) 2017 Devin Abbott
+
+## Author
+
+Devin Abbott, [@devinaabbott](http://twitter.com/devinaabbott)

@@ -1,4 +1,6 @@
 node_modules
-
-**/bin
-**/public
+npm-debug.log
+dist
+!dist/index.html
+server/build
+.idea

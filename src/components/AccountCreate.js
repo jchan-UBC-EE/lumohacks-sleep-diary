@@ -24,33 +24,27 @@ export default class AccountCreate extends Component {
     }
 
     setUser(event) {
-        console.log(event.target.value)
         this.setState({ UserName: event.target.value })
     }
 
     setPass(event) {
-        console.log(event.target.value)
         this.setState({ Password: event.target.value })
     }
 
     setName(event) {
-        console.log(event.target.value)
         this.setState({ Name: event.target.value })
     }    
 
     setPhone(event) {
-        console.log(event.target.value)
         this.setState({ Phone: event.target.value })
     } 
 
     setAddress(event) {
-        console.log(event.target.value)
         this.setState({ Address: event.target.value })
     } 
 
     setEmail(event) {
-        console.log(event.target.value)
-        this.setState({ Password: event.target.value })
+        this.setState({ Email: event.target.value })
     }
 
     handleSubmit(event) {
@@ -94,7 +88,7 @@ export default class AccountCreate extends Component {
                         </div>
                         <div>
                             <label><b>Phone</b></label>
-                            <input type="text" onChange={this.setPhone} required />
+                            <input type="number" onChange={this.setPhone} required />
                         </div>
                         <div>
                             <label><b>Address</b></label>
@@ -110,7 +104,7 @@ export default class AccountCreate extends Component {
                     </form>
                 </div>
                 <div>
-                    <Link to="/#">
+                    <Link to="/">
                         <button className="btn" type="button"> Back </button>
                     </Link>
                 </div>

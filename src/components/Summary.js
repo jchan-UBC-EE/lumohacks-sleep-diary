@@ -140,7 +140,7 @@ export default class Summary extends Component {
 			for (let i = 0; i < this.state.data.length; i++) {
 				avg += parseInt(this.state.data[i]["TimeToGetOutOfBed"]);
 			}
-			return avg / this.state.data.length;
+			return Math.ceil(avg / this.state.data.length);
 		}
 	}
 

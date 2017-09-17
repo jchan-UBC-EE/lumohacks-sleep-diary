@@ -14,19 +14,19 @@ export default class DataSummary extends Component {
 					<td>Average</td>
 				</tr>
 				<tr>
-					<td>Total Sleep Time</td>
+					<td className="alignleft">Total Sleep Time</td>
 					<td></td>
 					<td></td>
 					<td></td>
 				</tr>
 				<tr>
-					<td>Time In Bed</td>
+					<td className="alignleft">Time In Bed</td>
 					<td></td>
 					<td></td>
 					<td></td>
 				</tr>
 				<tr>
-					<td>Sleep Efficiency</td>
+					<td className="alignleft">Sleep Efficiency</td>
 					<td></td>
 					<td></td>
 					<td></td>
@@ -44,13 +44,13 @@ export default class DataSummary extends Component {
 					<td>Average</td>
 				</tr>
 				<tr>
-					<td>Time To Bed</td>
+					<td className="alignleft">Time To Bed</td>
 					<td></td>
 					<td></td>
 					<td></td>
 				</tr>
 				<tr>
-					<td>Time Out Of bed</td>
+					<td className="alignleft">Time Out Of bed</td>
 					<td></td>
 					<td></td>
 					<td></td>

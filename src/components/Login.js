@@ -28,7 +28,9 @@ export default class Login extends Component {
                 <div>
                     <form onSubmit={this.props.handleSubmit(this.state)}>
                         <div>
-                            <br /><br />
+                            <br />
+                            <h2> Login </h2>
+                            <br />
                             <label><b>Username</b></label>
                             <input type="text" placeholder="Enter Username" name="uname" onChange={this.setUser} required />
                         </div>
@@ -41,12 +43,13 @@ export default class Login extends Component {
                         </div>
                     </form>
                 </div>
+                <br />
                 <div>
                     <Link to={'/sign-up'}>
                         <button className="btn" type="button"> Sign-Up </button>
                     </Link>
                 </div>
-                <br /><br />
+                <br />
             </div>
         );
     }

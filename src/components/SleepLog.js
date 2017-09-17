@@ -161,7 +161,6 @@ export default class Layout extends Component {
 								type="number"
 								name="time_to_sleep"
 								onChange={this.setHowLongToSleep} />
-							<span className="timeToSleepText">min</span>
 						</div>
 						<br />
 						How many times did you wake up?
@@ -191,6 +190,7 @@ export default class Layout extends Component {
 						Comments (if applicable)
 				<br />
 						<textarea name="comment" form="sleep_diary_form" onChange={this.setComments}>Comments (if applicable)</textarea>
+						<br />
 						<input className="btn"
 							type="submit"
 							value="Submit" />

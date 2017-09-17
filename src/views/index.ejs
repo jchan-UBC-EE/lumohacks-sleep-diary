@@ -120,6 +120,60 @@
           <a href="https://nodejsdesignpatterns.com" target="_blank">Want to know more about Node.js, React and Universal Javascript?</a>
         </div>
         <script src="/js/bundle.js"></script>
+        <form action="cgi-bin/formmail.pl" method="post">
+            Name: <input type="text" name="name" value="" size="25" maxlength="50" />
+            <br>
+            Email: <input type="email" name="email" value="" size="25" maxlength="50" />
+            <br><br>
+            <h4>Please fill this section out in the evening, before going to bed. </h4>
+            Enter the time and duration of any naps you took today: 
+            <br>
+            <input type="text" name="question_1" value="" size="25" maxlength="80" style="width: 300px;"/>
+            <br>
+            Did you take any medication to help you sleep? If so, what did you take and when?
+            <br>
+            <input type="text" name="question_2" value="" size="25" maxlength="80" style="width: 300px;"/>
+            <br>
+
+            <h4>Please fill this section out as soon as you get up for the day the following morning. </h4>
+            Today's Date:
+            <br>
+            <input type="date" name="date">
+            <br>
+            What time did you get into bed? 
+            <br>
+            <input type="text" name="question_3" value="" size="25" maxlength="80" style="width: 300px;"/>
+            <br>
+            What time did you try to go to sleep?
+            <br>
+            <input type="text" name="question_4" value="" size="25" maxlength="80" style="width: 300px;"/>
+            <br>
+            How long did it take you to fall asleep? 
+            <br>
+            <input type="text" name="question_5" value="" size="25" maxlength="80" style="width: 300px;"/>
+            <br>
+            How many times did you wake up?
+            <br>
+            <input type="text" name="question_6" value="" size="25" maxlength="80" style="width: 300px;"/>
+            <br>
+            In total, how long did you sleep? 
+            <br>
+            <input type="text" name="question_7" value="" size="25" maxlength="80" style="width: 300px;"/>
+            <br>
+            What time was your final awakening? 
+            <br>
+            <input type="text" name="question_8" value="" size="25" maxlength="80" style="width: 300px;"/>
+            <br>
+            What time did you get out of bed for the day? 
+            <br>
+            <input type="text" name="question_9" value="" size="25" maxlength="80" style="width: 300px;"/>
+            <br>
+            Comments (if applicable) 
+            <br>
+            <input type="text" name="question_10" value="" size="25" maxlength="120" style="width: 300px;"/>
+            <br>
+            <input type="submit" name="submit" value="Submit" />
+        </form>       
         <!-- Footer Area Unit Menu - Mobile Only -->
         <div id="ubc7-unit-alternate-navigation" class="navbar expand visible-phone" role="navigation">
             <div class="navbar-inner expand">

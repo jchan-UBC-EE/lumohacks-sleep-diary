@@ -116,6 +116,7 @@ export default class Layout extends Component {
 	render() {
 		return (
 			<div>
+				<br />
 				<div>
                     <Link to={'/summary'}>
                         <button className="btn" type="button"> Summary </button>
@@ -137,6 +138,7 @@ export default class Layout extends Component {
 								onChange={this.setNapsDuringDay} />
 						</div>
 						Did you take any medication to help you sleep? If so, what did you take and when?
+						<br />
 					<input
 							type="text"
 							name="medication"
@@ -198,6 +200,7 @@ export default class Layout extends Component {
 				</div>
 				<div>
 					<p id="error"></p>
+					<br />
 				</div>
 			</div>
 		);

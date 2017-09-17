@@ -30,6 +30,34 @@ html {
       padding-right: 20px;
   }
 }
+
+.nap {
+  width: 215px;
+  height: 22px;
+  border: 1px solid #ccc;
+}
+
+.nap input {
+  padding: 4px 6px;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: top;
+}
+
+.napTime {
+  width: 92px;
+}
+
+.napDurationHr {
+  width: 32px;
+}
+
+.napDurationMin {
+  width: 32px;
+}
+
+.
 /*
 a {
   color: #1f4ba0;

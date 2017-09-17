@@ -9,9 +9,16 @@ export default class AccountCreate extends Component {
         this.state = {
             UserName: '',
             Password: '',
+            Name: '',
+            Phone: '',
+            Address: '',
+            Email: '',
         }
         this.setUser = this.setUser.bind(this);
         this.setPass = this.setPass.bind(this);
+        this.setName = this.setName.bind(this);
+        this.setPhone = this.setPhone.bind(this);
+        this.setAddress = this.setAddress.bind(this);
         this.setEmail = this.setEmail.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -25,6 +32,21 @@ export default class AccountCreate extends Component {
         console.log(event.target.value)
         this.setState({ Password: event.target.value })
     }
+
+    setName(event) {
+        console.log(event.target.value)
+        this.setState({ Name: event.target.value })
+    }    
+
+    setPhone(event) {
+        console.log(event.target.value)
+        this.setState({ Phone: event.target.value })
+    } 
+
+    setAddress(event) {
+        console.log(event.target.value)
+        this.setState({ Address: event.target.value })
+    } 
 
     setEmail(event) {
         console.log(event.target.value)
@@ -67,8 +89,20 @@ export default class AccountCreate extends Component {
                             <input type="password" onChange={this.setPass} required />
                         </div>
                         <div>
+                            <label><b>Name</b></label>
+                            <input type="text" onChange={this.setName} required />
+                        </div>
+                        <div>
+                            <label><b>Phone</b></label>
+                            <input type="text" onChange={this.setPhone} required />
+                        </div>
+                        <div>
+                            <label><b>Address</b></label>
+                            <input type="text" onChange={this.setAddress} required />
+                        </div>
+                        <div>
                             <label><b>Email</b></label>
-                            <input type="password" onChange={this.setEmail} required />
+                            <input type="email" onChange={this.setEmail} required />
                         </div>
                         <div>
                             <input className="btn" type="submit" value="Submit" />
@@ -76,8 +110,8 @@ export default class AccountCreate extends Component {
                     </form>
                 </div>
                 <div>
-                    <Link to="/sign-up">
-                        <button className="btn" type="button"> Sign-Up </button>
+                    <Link to="/#">
+                        <button className="btn" type="button"> Back </button>
                     </Link>
                 </div>
                 <p id="error"></p>

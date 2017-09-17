@@ -40,3 +40,12 @@
 .napDurationMin {
   width: 32px;
 }
+
+.timeToSleep {
+  width: 220px;
+}
+
+.timeToSleep::-webkit-inner-spin-button,
+.timeToSleep::-webkit-outer-spin-button {
+  margin: 0px;
+}

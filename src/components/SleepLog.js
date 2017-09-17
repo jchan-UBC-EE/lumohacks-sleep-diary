@@ -4,57 +4,169 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 
 export default class Layout extends Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			LogId: '',
+			UserId: '',
+			NapsDuringDay: '',
+			Medication: '',
+			TimeInBed: '',
+			TimeTryToSleep: '',
+			HowLongToSleep: '',
+			AmountWakeUp: '',
+			HowLongDidYouSleep: '',
+			WakeTime: '',
+			TimeToGetOutOfBed: '',
+			Comments: '',
+			CreateDate: ''
+		}
+		this.setNapsDuringDay = this.setNapsDuringDay.bind(this);
+		this.setMedication = this.setMedication.bind(this);
+		this.setTimeInBed = this.setTimeInBed.bind(this);
+		this.setTimeTryToSleep = this.setTimeTryToSleep.bind(this);
+		this.setHowLongToSleep = this.setHowLongToSleep.bind(this);
+		this.setAmountWakeUp = this.setAmountWakeUp.bind(this);
+		this.setHowLongDidYouSleep = this.setHowLongDidYouSleep.bind(this);
+		this.setWakeTime = this.setWakeTime.bind(this);
+		this.setTimeToGetOutOfBed = this.setTimeToGetOutOfBed.bind(this);
+		this.setComments = this.setComments.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
+	setNapsDuringDay(event) {
+		this.setState({NapsDuringDay: event.target.value})
+	}
+
+	setMedication(event) {
+		this.setState({Medication: event.target.value})
+	}
+
+	setTimeInBed(event) {
+		this.setState({TimeInBed: event.target.value})
+	}
+
+	setTimeTryToSleep(event) {
+		this.setState({TimeTryToSleep: event.target.value})
+	}
+
+	setHowLongToSleep(event) {
+		this.setState({HowLongToSleep: event.target.value})
+	}
+
+	setAmountWakeUp(event) {
+		this.setState({AmountWakeUp: event.target.value})
+	}
+
+	setHowLongDidYouSleep(event) {
+		this.setState({HowLongDidYouSleep: event.target.value})
+	}
+
+	setWakeTime(event) {
+		this.setState({WakeTime: event.target.value})
+	}
+
+	setTimeToGetOutOfBed(event) {
+		this.setState({TimeToGetOutOfBed: event.target.value})
+	}
+
+	setComments(event) {
+		this.setState({Comments: event.target.value})
+	}
+
+	handleSubmit(event) {
+		event.preventDefault()
+        fetch('/api/sign-up', {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(this.state)
+        })
+            .then(response => response.json())
+            .then(json => {
+                console.log(json)
+                if (json.confirmed === true) {
+                    window.location.replace("/");
+                } else {
+                    document.getElementById("error").innerHTML = "please try again";
+                }
+            })
+	}
+
 	render() {
 		return (
-			<form action="cgi-bin/formmail.pl" method="post" id="sleep_diary_form">
+			<form
+				id="sleep_diary_form" 
+				onSubmit={this.handleSubmit}>
+				
 				<h4>Please fill this section out in the evening, before going to bed.</h4>
 				Enter the time and duration of any naps you took today:<br />
 				<div className="nap inputWrapper">
-					<input className="napTime" type="time" name="nap_time" />
-					<span className="leftBracket">(</span>
-					<input className="napDurationHr" type="number" min="0" max="12" name="nap_duration_hr" />
-					<span className="hourText">hr : </span>
-					<input className="napDurationMin" type="number" min="0" max="45" step="15" name="nap_duration_min" />
-					<span className="rightBracket">min)</span>
+					<input className="napTime" 
+						type="time" 
+						name="nap_time"
+						onChange={this.setNapsDuringDay} />
 				</div>
+				Did you take any medication to help you sleep? If so, what did you take and when?
+					<input 
+						type="text"
+						name="medication"
+						onChange={this.setMedication} />
 				<br />
 				<h4>Please fill this section out as soon as you get up for the day the following morning.</h4>
 				What time did you get into bed?<br />
-				<input className="bedTime" type="time" name="bed_time" />
+				<input className="bedTime" 
+					type="time" 
+					name="bed_time"
+					onChange={this.setTimeInBed} />
 				<br />
 				What time did you try to go to sleep?<br />
-				<input className="trySleepTime" type="time" name="try_Sleep_time" />
+				<input className="trySleepTime" 
+					type="time" 
+					name="try_Sleep_time"
+					onChange={this.setTimeTryToSleep} />
 				<br />
 				How long did it take you to fall asleep?<br />
 				<div className="timeTryToSleep">
-					<input className="timeToSleep" type="number" name="time_to_sleep" />
+					<input className="timeToFallAsleep" 
+						type="number" 
+						name="time_to_sleep"
+						onChange={this.setHowLongToSleep} />
 					<span className="timeToSleepText">min</span>
 				</div>
 				<br />
 				How many times did you wake up?
 				<br />
-				<input type="number" name="time_wake_up" />
+				<input type="number" 
+					name="time_wake_up"
+					onChange={this.setAmountWakeUp} />
 				<br />
 				In total, how long did you sleep?
 				<br />
-				<input type="number" name="total_sleep_total" />
+				<input type="number" 
+					name="total_sleep_total"
+					onChange={this.setHowLongDidYouSleep} />
 				<br />
 				What time was your final awakening?
 				<br />
-				<input type="time" name="final_awakening" />
+				<input type="time" 
+					name="final_awakening"
+					onChange={this.setWakeTime} />
 				<br />
 				What time did you get out of bed for the day?
 				<br />
-				<input type="time" name="time_out_of_bed" />
+				<input type="time" 
+					name="time_out_of_bed"
+					onChange={this.setTimeToGetOutOfBed} />
 				<br />
 				Comments (if applicable)
 				<br />
 				<textarea name="comment" form="sleep_diary_form">Comments (if applicable)</textarea>
-
-
-
-        	<div className="timeTryToSleep">
-				</div>
+				<input className="btn" 
+					type="submit" 
+					value="Submit" />
 			</form>
 		);
 	}

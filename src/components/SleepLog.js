@@ -41,7 +41,14 @@ export default class Layout extends Component {
 
 	getDate() {
 		const today = new Date();
-		const getDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+		let todayDate;
+		if (today.getHours() < 15) {
+			todayDate = today.getDate() - 1;
+		}
+		else {
+			todayDate = today.getDate();
+		}
+		const getDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + todayDate;
 		this.setState({ CreateDate: getDate });
 	}
 

@@ -125,7 +125,6 @@ export default class Summary extends Component {
 		if (this.state.apiReady === true) {
 			let latest = (this.state.data[0]["TimeToGetOutOfBed"]);
 			for (let i = 0; i < this.state.data.length; i++) {
-				console.log(this.state.data[i]["TimeToGetOutOfBed"])
 				if ((latest) < this.state.data[i]["TimeToGetOutOfBed"]) {
 					latest = this.state.data[i]["TimeToGetOutOfBed"];
 				}

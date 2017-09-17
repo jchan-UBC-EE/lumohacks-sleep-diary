@@ -6,6 +6,7 @@ import Layout from './components/Layout';
 import IndexPage from './components/IndexPage';
 import AthletePage from './components/AthletePage';
 import NotFoundPage from './components/NotFoundPage';
+import SleepDiary from './components/SleepDiary'
 
 const routes = (
   <Route path="/" component={Layout}>

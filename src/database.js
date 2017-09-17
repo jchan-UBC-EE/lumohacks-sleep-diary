@@ -12,6 +12,7 @@ const c = mysql.createConnection({
 const app = express();
 
 let myToday = '';
+let profile = '';
 
 c.connect(function (err) {
     if (!err) {
@@ -29,6 +30,7 @@ const loginQuery = (login, callback) => {
             callback(error, { validation: false });
         }
         if (results.length === 1) {
+            profile = login.UserName;
             callback(null, { validation: true });
         } else {
             callback(error, { validation: false });
@@ -43,7 +45,7 @@ const dateGenerator = () => {
 }
 
 const signupQuery = (form, callback) => {
-    dateGenerator(); 
+    dateGenerator();
     let confirm = '';
     let sql = `INSERT INTO Users Values ('${form.UserName}', '${form.Password}', '${form.Name}', '${form.Phone}', '${form.Address}', '${form.Email}', DATE '${myToday}');`;
     c.query(sql, function (error, results, fields) {
@@ -59,7 +61,29 @@ const signupQuery = (form, callback) => {
     });
 }
 
+const loggingQuery = (log, callback) => {
+    console.log(log)
+    console.log(profile)
+    let eveningSql = `INSERT INTO SleepLog (UserId, NapsDuringDay, Medication, TimeInBed, TimeTryToSleep, HowLongToSleep, AmountWakenUp,
+         HowLongDidYouSleep, WakeTime, TimeToGetOutOfBed, Comments, CreateDate) VALUES
+         ('${profile}', '${log.Password}', '${log.Name}', '${log.Phone}', '${log.Address}', '${log.Email}', DATE '${myToday}');`;
+
+    let morningSql = `UPDATE SleepLog 
+                      SET TimeInBed = '${log.TimeInBed}',
+                      SET TimeTryToSleep = '${log.TimeTryToSleep}',
+                      SET HowLongToSleep = '${log.HowLongToSleep}',
+                      SET AmountWakenUp = '${log.AmountWakenUp}',
+                      SET HowLongDidYouSleep = '${log.HowLongDidYouSleep}',
+                      SET WakeTime = '${log.WakeTime}',
+                      SET Comments = '${log.Comments}'
+                      WHERE UserId = '${profile}'
+                      AND CreateDate = '${log.CreateDate}';`
+    console.log(eveningSql)
+    console.log(morningSql)
+}
+
 export {
     loginQuery,
-    signupQuery
+    signupQuery,
+    loggingQuery,
 }

@@ -23,9 +23,9 @@ export default class Summary extends Component {
 		this.setEarlyTimeToBed = this.setEarlyTimeToBed.bind(this);
 		this.setLateTimeToBed = this.setLateTimeToBed.bind(this);
 		this.setAverageTimeToBed = this.setAverageTimeToBed.bind(this);
-		// this.setEarlyTimeOutOfBed = this.setEarlyTimeOutOfBed.bind(this);
-		// this.setLateTimeOutOfBed = this.setLateTimeOutOfBed.bind(this);
-		// this.setAverageTimeOutOfBed = this.setAverageTimeOutOfBed.bind(this);
+		this.setEarlyTimeOutOfBed = this.setEarlyTimeOutOfBed.bind(this);
+		this.setLateTimeOutOfBed = this.setLateTimeOutOfBed.bind(this);
+		this.setAverageTimeOutOfBed = this.setAverageTimeOutOfBed.bind(this);
 	}
 	componentDidMount() {
 		fetch('/api/get-summary')
@@ -79,7 +79,7 @@ export default class Summary extends Component {
 		if (this.state.apiReady === true) {
 			let earliest = (this.state.data[0]["TimeInBed"]);
 			for (let i = 0; i < this.state.data.length; i++) {
-				if ((earliest) < this.state.data[i]["TimeInBed"]) {
+				if ((earliest) > this.state.data[i]["TimeInBed"]) {
 					earliest = this.state.data[i]["TimeInBed"];
 				}
 			}
@@ -91,7 +91,7 @@ export default class Summary extends Component {
 		if (this.state.apiReady === true) {
 			let latest = (this.state.data[0]["TimeInBed"]);
 			for (let i = 0; i < this.state.data.length; i++) {
-				if ((latest) > this.state.data[i]["TimeInBed"]) {
+				if ((latest) < this.state.data[i]["TimeInBed"]) {
 					latest = this.state.data[i]["TimeInBed"];
 				}
 			}
@@ -104,6 +104,41 @@ export default class Summary extends Component {
 			let avg = parseInt(this.state.data[0]["TimeInBed"]);
 			for (let i = 0; i < this.state.data.length; i++) {
 				avg += parseInt(this.state.data[i]["TimeInBed"]);
+			}
+			return avg / this.state.data.length;
+		}
+	}
+
+	setEarlyTimeOutOfBed() {
+		if (this.state.apiReady === true) {
+			let earliest = (this.state.data[0]["TimeToGetOutOfBed"]);
+			for (let i = 0; i < this.state.data.length; i++) {
+				if ((earliest) > this.state.data[i]["TimeToGetOutOfBed"]) {
+					earliest = this.state.data[i]["TimeToGetOutOfBed"];
+				}
+			}
+			return earliest;
+		}
+	}
+
+	setLateTimeOutOfBed() {
+		if (this.state.apiReady === true) {
+			let latest = (this.state.data[0]["TimeToGetOutOfBed"]);
+			for (let i = 0; i < this.state.data.length; i++) {
+				console.log(this.state.data[i]["TimeToGetOutOfBed"])
+				if ((latest) < this.state.data[i]["TimeToGetOutOfBed"]) {
+					latest = this.state.data[i]["TimeToGetOutOfBed"];
+				}
+			}
+			return latest;
+		}
+	}
+
+	setAverageTimeOutOfBed() {
+		if (this.state.apiReady === true) {
+			let avg = parseInt(this.state.data[0]["TimeToGetOutOfBed"]);
+			for (let i = 0; i < this.state.data.length; i++) {
+				avg += parseInt(this.state.data[i]["TimeToGetOutOfBed"]);
 			}
 			return avg / this.state.data.length;
 		}
@@ -155,10 +190,10 @@ export default class Summary extends Component {
 					<td>{this.setAverageTimeToBed()}</td>
 				</tr>
 				<tr>
-					<td className="alignleft">Time Out Of bed</td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td className="alignleft">Time Out Of Bed</td>
+					<td>{this.setEarlyTimeOutOfBed()}</td>
+					<td>{this.setLateTimeOutOfBed()}</td>
+					<td>{this.setAverageTimeOutOfBed()}</td>
 				</tr>
 
 			</table>

@@ -12,6 +12,7 @@ const c = mysql.createConnection({
 const app = express();
 
 let myToday = '';
+let profile = '';
 
 c.connect(function (err) {
     if (!err) {
@@ -29,6 +30,7 @@ const loginQuery = (login, callback) => {
             callback(error, { validation: false });
         }
         if (results.length === 1) {
+            profile = login.UserName;
             callback(null, { validation: true });
         } else {
             callback(error, { validation: false });
@@ -43,7 +45,7 @@ const dateGenerator = () => {
 }
 
 const signupQuery = (form, callback) => {
-    dateGenerator(); 
+    dateGenerator();
     let confirm = '';
     let sql = `INSERT INTO Users Values ('${form.UserName}', '${form.Password}', '${form.Name}', '${form.Phone}', '${form.Address}', '${form.Email}', DATE '${myToday}');`;
     c.query(sql, function (error, results, fields) {
@@ -59,7 +61,32 @@ const signupQuery = (form, callback) => {
     });
 }
 
+const loggingQuery = (log, callback) => {
+    let sql = '';
+    if (log.TimeTryToSleep != '') {
+        sql = `UPDATE SleepLog 
+        SET TimeInBed = '${log.TimeInBed}',
+        SET TimeTryToSleep = '${log.TimeTryToSleep}',
+        SET HowLongToSleep = '${log.HowLongToSleep}',
+        SET AmountWakenUp = '${log.AmountWakenUp}',
+        SET HowLongDidYouSleep = '${log.HowLongDidYouSleep}',
+        SET WakeTime = '${log.WakeTime}',
+        SET Comments = '${log.Comments}'
+        WHERE UserId = '${profile}'
+        AND CreateDate = '${log.CreateDate}';`
+    } else {
+        sql = `INSERT INTO SleepLog (UserId, NapsDuringDay, Medication, TimeInBed, TimeTryToSleep, HowLongToSleep, AmountWakenUp,
+            HowLongDidYouSleep, WakeTime, TimeToGetOutOfBed, Comments, CreateDate) VALUES
+            ('${profile}', '${log.NapsDuringDay}', '${log.Medication}', '${log.TimeInBed}', '${log.TimeTryToSleep}', '${log.HowLongToSleep}', 
+            '${log.AmountWakenUp}', '${log.HowLongDidYouSleep}', '${log.WakeTime}', '${log.TimeToGetOutOfBed}', '${log.Comments}', DATE '${log.CreateDate}');`;
+    }
+
+    console.log(sql);
+    
+}
+
 export {
     loginQuery,
-    signupQuery
+    signupQuery,
+    loggingQuery,
 }

@@ -74,7 +74,9 @@ export default class AccountCreate extends Component {
                 <div>
                     <form onSubmit={this.handleSubmit}>
                         <div>
-                            <br /><br />
+                            <br />
+                            <h2> Sign Up </h2>
+                            <br />
                             <label><b>User Name</b></label>
                             <input type="text" onChange={this.setUser} required />
                         </div>
@@ -88,7 +90,7 @@ export default class AccountCreate extends Component {
                         </div>
                         <div>
                             <label><b>Phone</b></label>
-                            <input type="number" onChange={this.setPhone} required />
+                            <input type="text" onChange={this.setPhone} required />
                         </div>
                         <div>
                             <label><b>Address</b></label>
@@ -104,8 +106,9 @@ export default class AccountCreate extends Component {
                     </form>
                 </div>
                 <div>
+                    <br />
                     <Link to="/">
-                        <button className="btn" type="button"> Back </button>
+                        <button className="btn" type="button"> Home </button>
                     </Link>
                 </div>
                 <p id="error"></p>

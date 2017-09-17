@@ -8,7 +8,7 @@ import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import bodyParser from 'body-parser';
 import routes from './routes';
-import { loginQuery, signupQuery } from './database';
+import { loginQuery, signupQuery, loggingQuery } from './database';
 import NotFoundPage from './components/NotFoundPage';
 
 // initialize the server and configure support for ejs templates
@@ -23,7 +23,7 @@ app.use(Express.static(path.join(__dirname, 'static')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-let loggedin = ''; 
+let loggedin = '';
 
 app.post('/api/login', (req, res) => {
   loginQuery(req.body, (err, content) => {
@@ -38,14 +38,25 @@ app.post('/api/login', (req, res) => {
 });
 
 app.post('/api/sign-up', (req, res) => {
-  signupQuery(req.body, (err, content) => { 
+  signupQuery(req.body, (err, content) => {
     if (err) {
       console.log(err);
     } else {
       res.send(content);
     }
   });
-})
+});
+
+app.post('/api/sleep-log', (req, res) => {
+  loggingQuery(req.body, (err, content) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(content);
+    }
+  });
+});
+
 
 // universal routing and rendering
 app.get('*', (req, res) => {

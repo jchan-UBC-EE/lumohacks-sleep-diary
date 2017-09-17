@@ -44,6 +44,7 @@ export default class AppContainer extends React.Component {
             <div className="app-container">
                 <Login handleSubmit={this.handleSubmit.bind(this)} />
                 <p id="error"></p>
+                <br />
             </div>
         );
     }

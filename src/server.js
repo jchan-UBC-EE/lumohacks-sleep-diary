@@ -26,23 +26,25 @@ app.use(bodyParser.urlencoded({ extended: true }));
 let loggedin = ''; 
 
 app.post('/api/login', (req, res) => {
-  let validation = '';
   loginQuery(req.body, (err, content) => {
     if (err) {
       console.log(err);
     } else {
-      validation = content;
       loggedin = req.body.UserName;
       console.log(loggedin)
-      console.log(validation);
-      res.send(validation);
+      res.send(content);
     }
   })
 });
 
 app.post('/api/sign-up', (req, res) => {
-  signupQuery(req.body)
-  res.send({confirmed: true});
+  signupQuery(req.body, (err, content) => { 
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(content);
+    }
+  });
 })
 
 // universal routing and rendering
@@ -79,7 +81,7 @@ app.get('*', (req, res) => {
 });
 
 // start the server
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 const env = process.env.NODE_ENV || 'production';
 server.listen(port, err => {
   if (err) {

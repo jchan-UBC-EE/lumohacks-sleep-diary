@@ -15,12 +15,10 @@ export default class Login extends Component {
     }
 
     setUser(event) {
-        console.log(event.target.value)
         this.setState({ UserName: event.target.value })
     }
 
     setPass(event) {
-        console.log(event.target.value)
         this.setState({ Password: event.target.value })
     }
 

@@ -21,7 +21,7 @@ We created a form that is connected to a database.
 ## What We Learned
 We learned how to create a form online.
 We learned how to set up a database.
-We learned how to connect a form.
+We learned how to connect a form to the database.
 
 ## What's Next For Sleep-Diary
 Integrate data visualization.

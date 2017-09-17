@@ -49,7 +49,6 @@ const signupQuery = (form, callback) => {
     let confirm = '';
     let sql = `INSERT INTO Users Values ('${form.UserName}', '${form.Password}', '${form.Name}', '${form.Phone}', '${form.Address}', '${form.Email}', DATE '${myToday}');`;
     c.query(sql, function (error, results, fields) {
-        console.log(results)
         if (error) {
             callback(error, { confirmed: false });
         }
@@ -84,7 +83,6 @@ const loggingQuery = (log, callback) => {
     }
 
     c.query(sql, function (error, results, fields) {
-        console.log(results)
         if (error) {
             callback(error, { logConfirm: false });
         }
@@ -94,9 +92,6 @@ const loggingQuery = (log, callback) => {
             callback(error, { logConfirm: false });
         }
     });
-
-    console.log(sql);
-    
 }
 
 export {

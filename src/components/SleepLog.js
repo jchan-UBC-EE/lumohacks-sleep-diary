@@ -73,7 +73,7 @@ export default class Layout extends Component {
 	}
 
 	setAmountWakeUp(event) {
-		this.setState({ AmountWakeUp: event.target.value })
+		this.setState({ AmountWakenUp: event.target.value })
 	}
 
 	setHowLongDidYouSleep(event) {
@@ -185,7 +185,7 @@ export default class Layout extends Component {
 						<br />
 						Comments (if applicable)
 				<br />
-						<textarea name="comment" form="sleep_diary_form">Comments (if applicable)</textarea>
+						<textarea name="comment" form="sleep_diary_form" onChange={this.setComments}>Comments (if applicable)</textarea>
 						<input className="btn"
 							type="submit"
 							value="Submit" />

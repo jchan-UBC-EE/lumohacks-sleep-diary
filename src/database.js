@@ -62,24 +62,27 @@ const signupQuery = (form, callback) => {
 }
 
 const loggingQuery = (log, callback) => {
-    console.log(log)
-    console.log(profile)
-    let eveningSql = `INSERT INTO SleepLog (UserId, NapsDuringDay, Medication, TimeInBed, TimeTryToSleep, HowLongToSleep, AmountWakenUp,
-         HowLongDidYouSleep, WakeTime, TimeToGetOutOfBed, Comments, CreateDate) VALUES
-         ('${profile}', '${log.Password}', '${log.Name}', '${log.Phone}', '${log.Address}', '${log.Email}', DATE '${myToday}');`;
+    let sql = '';
+    if (log.TimeTryToSleep != '') {
+        sql = `UPDATE SleepLog 
+        SET TimeInBed = '${log.TimeInBed}',
+        SET TimeTryToSleep = '${log.TimeTryToSleep}',
+        SET HowLongToSleep = '${log.HowLongToSleep}',
+        SET AmountWakenUp = '${log.AmountWakenUp}',
+        SET HowLongDidYouSleep = '${log.HowLongDidYouSleep}',
+        SET WakeTime = '${log.WakeTime}',
+        SET Comments = '${log.Comments}'
+        WHERE UserId = '${profile}'
+        AND CreateDate = '${log.CreateDate}';`
+    } else {
+        sql = `INSERT INTO SleepLog (UserId, NapsDuringDay, Medication, TimeInBed, TimeTryToSleep, HowLongToSleep, AmountWakenUp,
+            HowLongDidYouSleep, WakeTime, TimeToGetOutOfBed, Comments, CreateDate) VALUES
+            ('${profile}', '${log.NapsDuringDay}', '${log.Medication}', '${log.TimeInBed}', '${log.TimeTryToSleep}', '${log.HowLongToSleep}', 
+            '${log.AmountWakenUp}', '${log.HowLongDidYouSleep}', '${log.WakeTime}', '${log.TimeToGetOutOfBed}', '${log.Comments}', DATE '${log.CreateDate}');`;
+    }
 
-    let morningSql = `UPDATE SleepLog 
-                      SET TimeInBed = '${log.TimeInBed}',
-                      SET TimeTryToSleep = '${log.TimeTryToSleep}',
-                      SET HowLongToSleep = '${log.HowLongToSleep}',
-                      SET AmountWakenUp = '${log.AmountWakenUp}',
-                      SET HowLongDidYouSleep = '${log.HowLongDidYouSleep}',
-                      SET WakeTime = '${log.WakeTime}',
-                      SET Comments = '${log.Comments}'
-                      WHERE UserId = '${profile}'
-                      AND CreateDate = '${log.CreateDate}';`
-    console.log(eveningSql)
-    console.log(morningSql)
+    console.log(sql);
+    
 }
 
 export {

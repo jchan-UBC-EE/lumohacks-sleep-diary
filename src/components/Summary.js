@@ -3,7 +3,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 
-export default class DataSummary extends Component {
+export default class Summary extends Component {
+
+	componentDidMount() {
+		fetch('/api/get-summary')
+			.then(response => response.json())
+			.then(x => console.log(x))
+	}
+
 	render() {
 		return (
 			<table>

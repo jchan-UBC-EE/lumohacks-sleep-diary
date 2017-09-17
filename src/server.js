@@ -8,7 +8,7 @@ import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import bodyParser from 'body-parser';
 import routes from './routes';
-import { loginQuery, signupQuery, loggingQuery } from './database';
+import { loginQuery, signupQuery, loggingQuery, summaryQuery } from './database';
 import NotFoundPage from './components/NotFoundPage';
 
 // initialize the server and configure support for ejs templates
@@ -57,6 +57,15 @@ app.post('/api/sleep-log', (req, res) => {
   });
 });
 
+app.get('/api/get-summary', (req, res) => {
+  summaryQuery(req.body, (err, content) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(content);
+    }
+  });
+});
 
 // universal routing and rendering
 app.get('*', (req, res) => {

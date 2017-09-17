@@ -93,8 +93,25 @@ const loggingQuery = (log, callback) => {
     });
 }
 
+const summaryQuery = (form, callback) => {
+    let sql = `SELECT * FROM SleepLog
+                WHERE UserId = '${profile}';`
+
+    c.query(sql, function (error, results, fields) {
+        if (error) {
+            callback(error, { });
+        }
+        if (results) {
+            callback(null, results);
+        } else {
+            callback(error, { logConfirm: false });
+        }
+    });
+}
+
 export {
     loginQuery,
     signupQuery,
     loggingQuery,
+    summaryQuery,
 }

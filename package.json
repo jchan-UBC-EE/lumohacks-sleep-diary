@@ -1,9 +1,9 @@
 {
-  "name": "judo-heroes",
+  "name": "lumohacks-sleep-diary",
   "version": "1.0.0",
-  "description": "Simple application to showcase how to achieve universal rendering and routing with React and Express.",
+  "description": "Our solution to the Lumohacks 2017 Sleep Disorders Challenge",
   "main": "src/server.js",
-  "repository": "git@github.com:lmammino/judo-heroes.git",
+  "repository": "git@github.com:patricklinpl/lumohacks-sleep-diary.git",
   "scripts": {
     "start": "cross-env NODE_ENV=production node_modules/.bin/babel-node --presets react,es2015 src/server.js",
     "start-dev": "npm run start-dev-hmr",
@@ -11,7 +11,7 @@
     "start-dev-hmr": "node_modules/.bin/webpack-dev-server --progress --inline --hot --open",
     "build": "cross-env NODE_ENV=production node_modules/.bin/webpack -p"
   },
-  "author": "Luciano Mammino",
+  "author": "Patrick Lin",
   "license": "MIT",
   "dependencies": {
     "babel-cli": "^6.11.4",
@@ -21,12 +21,15 @@
     "babel-preset-es2015": "^6.13.2",
     "babel-preset-react": "^6.11.1",
     "babel-preset-react-hmre": "^1.1.1",
+    "body-parser": "^1.18.1",
     "cross-env": "^3.1.4",
     "ejs": "^2.5.1",
     "express": "^4.14.0",
+    "mysql": "^2.14.1",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
-    "react-router": "^2.6.1"
+    "react-router": "^2.6.1",
+    "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
     "http-server": "^0.9.0",

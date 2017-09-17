@@ -6,7 +6,9 @@ import Express from 'express';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
+import bodyParser from 'body-parser';
 import routes from './routes';
+import { loginQuery } from './database';
 import NotFoundPage from './components/NotFoundPage';
 
 // initialize the server and configure support for ejs templates
@@ -18,8 +20,20 @@ app.set('views', path.join(__dirname, 'views'));
 // define the folder that will be used for static assets
 app.use(Express.static(path.join(__dirname, 'static')));
 
-app.post('/api/form', function(req, res) {
-  res.send({form: "hit"});
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.post('/api/login', function (req, res) {
+  let validation = '';
+  loginQuery(req.body, function (err, content) {
+    if (err) {
+      console.log(err);
+    } else {
+      validation = content;
+      console.log(validation);
+      res.send(validation);
+    }
+  })
 });
 
 // universal routing and rendering
@@ -42,10 +56,10 @@ app.get('*', (req, res) => {
       let markup;
       if (renderProps) {
         // if the current route matched we have renderProps
-        markup = renderToString(<RouterContext {...renderProps}/>);
+        markup = renderToString(<RouterContext {...renderProps} />);
       } else {
         // otherwise we can render a 404 page
-        markup = renderToString(<NotFoundPage/>);
+        markup = renderToString(<NotFoundPage />);
         res.status(404);
       }
 
@@ -56,7 +70,7 @@ app.get('*', (req, res) => {
 });
 
 // start the server
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 const env = process.env.NODE_ENV || 'production';
 server.listen(port, err => {
   if (err) {

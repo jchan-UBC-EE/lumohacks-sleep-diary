@@ -1,17 +1,21 @@
 'use strict';
 
-import React from 'react'
-import { Route, IndexRoute } from 'react-router'
-import Layout from './components/Layout';
-import IndexPage from './components/IndexPage';
-import NotFoundPage from './components/NotFoundPage';
-import SleepDiary from './components/SleepDiary'
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import AccountContainer from './container/AccountContainer';
+import AppContainer from './container/AppContainer';
+import AccountCreate from './components/AccountCreate';
 
 const routes = (
-  <Route path="/" component={Layout}>
-    <IndexRoute component={IndexPage}/>
-    <Route path="*" component={NotFoundPage}/>
-  </Route>
+  <Router>
+    <div>
+      <Switch>
+      <Route exact path="/" component={AccountContainer} />
+      <Route exact path="/sign-up" component={AccountCreate} />
+      <Route exact path="/sleeplog" component={AppContainer} />
+      </Switch>
+    </div>
+  </Router>
 );
 
 export default routes;

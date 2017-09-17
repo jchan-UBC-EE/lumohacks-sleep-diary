@@ -26,6 +26,9 @@ export default class Layout extends Component {
 				<input className="trySleepTime" type="time" name="try_Sleep_time" />
 				<br />
 				How long did it take you to fall asleep?
+				<input className="timeToSleep" type="number" name="time_to_sleep" />
+				<br />
+
         	<div className="timeTryToSleep">
 				</div>
 			</form>

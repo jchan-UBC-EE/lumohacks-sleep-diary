@@ -33,32 +33,32 @@ insert into Users values ('victorwu', 'admin', 'Victor Wu', '6042312412', '6223 
 
 insert into SleepLog (UserId, NapsDuringDay, Medication, TimeInBed, TimeTryToSleep, HowLongToSleep, AmountWakenUp, HowLongDidYouSleep,
  WakeTime, TimeToGetOutOfBed, Comments, CreateDate)  values ('victorwu', '3pm (30 mins)', 'melatonin', 
- '11:00', '11:32', '60', '3', '5', '06:30', '07:00', 'i was sick', DATE '1961-01-01');
+ '20:15', '23:30', '60', '3', '5', '06:30', '07:00', 'i was sick', DATE '1961-01-01');
 
  insert into SleepLog (UserId, NapsDuringDay, Medication, TimeInBed, TimeTryToSleep, HowLongToSleep, AmountWakenUp, HowLongDidYouSleep,
  WakeTime, TimeToGetOutOfBed, Comments, CreateDate)  values ('victorwu', '3pm (30 mins)', 'melatonin', 
- '01:23', '11:23', '6', '30', '5', '06:30', '07:32', 'i was sick', DATE '2017-09-02');
+ '23:00', '23:30', '5', '2', '1.75', '07:30', '08:00', 'i was sick', DATE '2017-09-02');
 
 insert into SleepLog (UserId, NapsDuringDay, Medication, TimeInBed, TimeTryToSleep, HowLongToSleep, AmountWakenUp, HowLongDidYouSleep,
  WakeTime, TimeToGetOutOfBed, Comments, CreateDate)  values ('victorwu', '3pm (30 mins)', 'melatonin', 
- '11:23', '11:32', '60', '3', '5', '06:30', '07:23', 'i was sick', DATE '2017-09-03');
+ '20:45', '22:00', '60', '2', '5.30', '8:15', '8:30', 'i was sick', DATE '2017-09-03');
 
 insert into SleepLog (UserId, NapsDuringDay, Medication, TimeInBed, TimeTryToSleep, HowLongToSleep, AmountWakenUp, HowLongDidYouSleep,
  WakeTime, TimeToGetOutOfBed, Comments, CreateDate)  values ('victorwu', '3pm (30 mins)', 'melatonin', 
- '11:32', '11:50', '60', '3', '5', '06:30', '07:21', 'i was sick', DATE '2017-09-04');
+ '22:00', '22:20', '100', '4', '5', '06:50', '07:00', 'i was sick', DATE '2017-09-04');
 
   insert into SleepLog (UserId, NapsDuringDay, Medication, TimeInBed, TimeTryToSleep, HowLongToSleep, AmountWakenUp, HowLongDidYouSleep,
  WakeTime, TimeToGetOutOfBed, Comments, CreateDate)  values ('victorwu', '3pm (30 mins)', 'melatonin', 
- '11:21', '11:59', '60', '3', '5', '06:30', '07:12', 'i was sick', DATE '2017-09-05');
+ '21:00', '22:00', '60', '1', '5.45', '07:45', '08:15', 'i was sick', DATE '2017-09-05');
 
   insert into SleepLog (UserId, NapsDuringDay, Medication, TimeInBed, TimeTryToSleep, HowLongToSleep, AmountWakenUp, HowLongDidYouSleep,
  WakeTime, TimeToGetOutOfBed, Comments, CreateDate)  values ('victorwu', '3pm (30 mins)', 'melatonin', 
- '01:11', '12:22', '30', '32', '53', '06:30', '07:21', 'i was sick', DATE '2017-09-06');
+ '21:30', '22:30', '60', '2', '5', '07:30', '08:00', 'i was sick', DATE '2017-09-06');
 
   insert into SleepLog (UserId, NapsDuringDay, Medication, TimeInBed, TimeTryToSleep, HowLongToSleep, AmountWakenUp, HowLongDidYouSleep,
  WakeTime, TimeToGetOutOfBed, Comments, CreateDate)  values ('victorwu', '3pm (30 mins)', 'melatonin', 
- '11:21', '11:50', '60', '3', '5', '06:30', '07:00', 'i was sick', DATE '2017-09-07');
+ '22:00', '22:15', '60', '1', '6', '05:15', '06:00', 'i was sick', DATE '2017-09-07');
 
   insert into SleepLog (UserId, NapsDuringDay, Medication, TimeInBed, TimeTryToSleep, HowLongToSleep, AmountWakenUp, HowLongDidYouSleep,
  WakeTime, TimeToGetOutOfBed, Comments, CreateDate)  values ('victorwu', '3pm (30 mins)', 'melatonin', 
- '12:23', '11:23', '60', '3', '5', '06:30', '07:00', 'i was sick', DATE '2017-09-08');
+ '20:00', '00:00', '60', '2', '4.45', '05:45', '07:00', 'i was sick', DATE '2017-09-08');

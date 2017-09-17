@@ -73,8 +73,7 @@ const loggingQuery = (log, callback) => {
         WakeTime = '${log.WakeTime}',
         TimeToGetOutOfBed = '${log.TimeToGetOutOfBed}',
         Comments = '${log.Comments}'
-        WHERE UserId = '${profile}'
-        AND CreateDate = '${log.CreateDate}';`
+        WHERE UserId = '${profile}' AND CreateDate = '${log.CreateDate}';`
     } else {
         sql = `INSERT INTO SleepLog (UserId, NapsDuringDay, Medication, TimeInBed, TimeTryToSleep, HowLongToSleep, AmountWakenUp,
             HowLongDidYouSleep, WakeTime, TimeToGetOutOfBed, Comments, CreateDate) VALUES

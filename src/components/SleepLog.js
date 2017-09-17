@@ -117,6 +117,11 @@ export default class Layout extends Component {
 		return (
 			<div>
 				<div>
+                    <Link to={'/summary'}>
+                        <button className="btn" type="button"> Summary </button>
+                    </Link>
+                </div>
+				<div>
 					<form
 						id="sleep_diary_form"
 						onSubmit={this.handleSubmit}>

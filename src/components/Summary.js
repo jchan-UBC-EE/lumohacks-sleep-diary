@@ -9,7 +9,7 @@ export default class Summary extends Component {
 		this.state = {
 			data: [],
 			arrayLength: 0,
-			apiReady: false
+			apiReady: false,
 		}
 		this.setMinTotalSleep = this.setMinTotalSleep.bind(this);
 		// this.setMaxTotalSleep = this.setMaxTotalSleep.bind(this);
@@ -17,9 +17,9 @@ export default class Summary extends Component {
 		// this.setMinTimeInBed = this.setMinTimeInBed.bind(this);
 		// this.setMaxTimeInBed = this.setMaxTimeInBed.bind(this);
 		// this.setAverageTimeInBed = this.setAverageTimeInBed.bind(this);
-		// this.setMinSleepEfficiency = this.setMinSleepEfficiency.bind(this);
-		// this.setMaxSleepEfficiency = this.setMaxSleepEfficiency.bind(this);
-		// this.setAverageSleepEfficiency = this.setAverageSleepEfficiency.bind(this);
+		this.setMinSleepEfficiency = this.setMinSleepEfficiency.bind(this);
+		this.setMaxSleepEfficiency = this.setMaxSleepEfficiency.bind(this);
+		this.setAverageSleepEfficiency = this.setAverageSleepEfficiency.bind(this);
 		this.setEarlyTimeToBed = this.setEarlyTimeToBed.bind(this);
 		this.setLateTimeToBed = this.setLateTimeToBed.bind(this);
 		this.setAverageTimeToBed = this.setAverageTimeToBed.bind(this);
@@ -143,6 +143,58 @@ export default class Summary extends Component {
 		}
 	}
 
+	setMinSleepEfficiency() {
+		if (this.state.apiReady === true) {
+			let minArray = [];
+			for (let i = 0; i < this.state.data.length; i++) {
+				let timeInBed = parseInt(this.state.data[i]["TimeInBed"]) - parseInt(this.state.data[i]["TimeToGetOutOfBed"])
+				let longInBed = parseInt(this.state.data[i]["HowLongDidYouSleep"])
+				let efficiency = timeInBed / longInBed
+				minArray.push(efficiency)
+			}
+			console.log(minArray)
+			let min = minArray[0]
+			for (let i = 0; i < minArray.length; i++) {
+				if ((min) > minArray[i]) {
+					min = minArray[i];
+				}
+			}
+			return min;
+		}
+	}
+
+	setMaxSleepEfficiency() {
+		if (this.state.apiReady === true) {
+			let maxArray = [];
+			for (let i = 0; i < this.state.data.length; i++) {
+				let timeInBed = parseInt(this.state.data[i]["TimeInBed"]) - parseInt(this.state.data[i]["TimeToGetOutOfBed"])
+				let longInBed = parseInt(this.state.data[i]["HowLongDidYouSleep"])
+				let efficiency = timeInBed / longInBed
+				maxArray.push(efficiency)
+			}
+			let max = maxArray[0]
+			for (let i = 0; i < maxArray.length; i++) {
+				if ((max) < maxArray[i]) {
+					max = maxArray[i];
+				}
+			}
+			return max;
+		}
+	}
+
+	setAverageSleepEfficiency() {
+		if (this.state.apiReady === true) {
+			let avg = 0;
+			for (let i = 0; i < this.state.data.length; i++) {
+				let timeInBed = parseInt(this.state.data[i]["TimeInBed"]) - parseInt(this.state.data[i]["TimeToGetOutOfBed"])
+				let longInBed = parseInt(this.state.data[i]["HowLongDidYouSleep"])
+				let efficiency = timeInBed / longInBed
+				avg =+ efficiency
+			}
+			return avg/this.state.data.length;
+		}
+	}
+
 	render() {
 		return (
 			<table>
@@ -166,9 +218,9 @@ export default class Summary extends Component {
 				</tr>
 				<tr>
 					<td className="alignleft">Sleep Efficiency</td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td>{this.setMinSleepEfficiency()}</td>
+					<td>{this.setMaxSleepEfficiency()}</td>
+					<td>{this.setAverageSleepEfficiency()}</td>
 				</tr>
 				<tr>
 					<td></td>

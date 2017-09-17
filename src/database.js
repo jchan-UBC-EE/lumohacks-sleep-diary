@@ -63,15 +63,17 @@ const signupQuery = (form, callback) => {
 
 const loggingQuery = (log, callback) => {
     let sql = '';
+    let logConfirm = '';
     if (log.TimeTryToSleep != '') {
         sql = `UPDATE SleepLog 
         SET TimeInBed = '${log.TimeInBed}',
-        SET TimeTryToSleep = '${log.TimeTryToSleep}',
-        SET HowLongToSleep = '${log.HowLongToSleep}',
-        SET AmountWakenUp = '${log.AmountWakenUp}',
-        SET HowLongDidYouSleep = '${log.HowLongDidYouSleep}',
-        SET WakeTime = '${log.WakeTime}',
-        SET Comments = '${log.Comments}'
+        TimeTryToSleep = '${log.TimeTryToSleep}',
+        HowLongToSleep = '${log.HowLongToSleep}',
+        AmountWakenUp = '${log.AmountWakenUp}',
+        HowLongDidYouSleep = '${log.HowLongDidYouSleep}',
+        WakeTime = '${log.WakeTime}',
+        TimeToGetOutOfBed = '${log.TimeToGetOutOfBed}',
+        Comments = '${log.Comments}'
         WHERE UserId = '${profile}'
         AND CreateDate = '${log.CreateDate}';`
     } else {
@@ -80,6 +82,18 @@ const loggingQuery = (log, callback) => {
             ('${profile}', '${log.NapsDuringDay}', '${log.Medication}', '${log.TimeInBed}', '${log.TimeTryToSleep}', '${log.HowLongToSleep}', 
             '${log.AmountWakenUp}', '${log.HowLongDidYouSleep}', '${log.WakeTime}', '${log.TimeToGetOutOfBed}', '${log.Comments}', DATE '${log.CreateDate}');`;
     }
+
+    c.query(sql, function (error, results, fields) {
+        console.log(results)
+        if (error) {
+            callback(error, { logConfirm: false });
+        }
+        if (results) {
+            callback(null, { logConfirm: true });
+        } else {
+            callback(error, { logConfirm: false });
+        }
+    });
 
     console.log(sql);
     

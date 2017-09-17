@@ -12,11 +12,11 @@ export default class Summary extends Component {
 			apiReady: false
 		}
 		this.setMinTotalSleep = this.setMinTotalSleep.bind(this);
-		// this.setMaxTotalSleep = this.setMaxTotalSleep.bind(this);
+		this.setMaxTotalSleep = this.setMaxTotalSleep.bind(this);
 		this.setAverageTotalSleep = this.setAverageTotalSleep.bind(this);
-		// this.setMinTimeInBed = this.setMinTimeInBed.bind(this);
-		// this.setMaxTimeInBed = this.setMaxTimeInBed.bind(this);
-		// this.setAverageTimeInBed = this.setAverageTimeInBed.bind(this);
+		this.setMinTimeInBed = this.setMinTimeInBed.bind(this);
+		this.setMaxTimeInBed = this.setMaxTimeInBed.bind(this);
+		this.setAverageTimeInBed = this.setAverageTimeInBed.bind(this);
 		// this.setMinSleepEfficiency = this.setMinSleepEfficiency.bind(this);
 		// this.setMaxSleepEfficiency = this.setMaxSleepEfficiency.bind(this);
 		// this.setAverageSleepEfficiency = this.setAverageSleepEfficiency.bind(this);
@@ -38,6 +38,31 @@ export default class Summary extends Component {
 			// console.log(this.state.data[0]["HowLongDidYouSleep"]);
 			let temp = 0;
 			if (this.state.arrayLength < 7) {
+				temp = parseInt(this.state.data[0]["HowLongDidYouSleep"]);
+				for (let i = 0; i < this.state.arrayLength; i++) {
+					if (parseInt(this.state.data[i]["HowLongDidYouSleep"]) < temp)
+					{
+						temp = parseInt(this.state.data[i]["HowLongDidYouSleep"]);
+					}
+				}
+			}
+			else{
+				temp = parseInt(this.state.data[this.state.arrayLength - 1 - 0]["HowLongDidYouSleep"]);
+				for (let i = 0; i < 7; i++) {
+					if (parseInt(this.state.data[this.state.arrayLength - 1 - i]["HowLongDidYouSleep"]) < temp)
+					{
+						temp = parseInt(this.state.data[this.state.arrayLength - 1 - i]["HowLongDidYouSleep"]);
+					}
+				}
+			}
+			return temp;
+		}
+	}
+
+	setMaxTotalSleep() {
+		if (this.state.apiReady === true) {
+			let temp = 0;
+			if (this.state.arrayLength < 7) {
 				for (let i = 0; i < this.state.arrayLength; i++) {
 					if (parseInt(this.state.data[i]["HowLongDidYouSleep"]) > temp)
 					{
@@ -47,9 +72,9 @@ export default class Summary extends Component {
 			}
 			else{
 				for (let i = 0; i < 7; i++) {
-					if (parseInt(this.state.data[i]["HowLongDidYouSleep"]) > temp)
+					if (parseInt(this.state.data[this.state.arrayLength - 1 - i]["HowLongDidYouSleep"]) > temp)
 					{
-						temp = parseInt(this.state.data[i]["HowLongDidYouSleep"]);
+						temp = parseInt(this.state.data[this.state.arrayLength - 1 - i]["HowLongDidYouSleep"]);
 					}
 				}
 			}
@@ -77,6 +102,131 @@ export default class Summary extends Component {
 		}
 	}
 
+	setMinTimeInBed() {
+		if (this.state.apiReady === true) {
+			// console.log(this.state.data[0]["HowLongDidYouSleep"]);
+			let temp = 0;
+			if (this.state.arrayLength < 7) {
+				let start = new Date(2000, 0, 1, parseInt(this.state.data[0]["TimeInBed"].substring(0, 2)), parseInt(this.state.data[0]["TimeInBed"].substring(3, 5)));
+				let end = new Date(2000, 0, 2, parseInt(this.state.data[0]["TimeToGetOutOfBed"].substring(0, 2)), parseInt(this.state.data[0]["TimeToGetOutOfBed"].substring(3, 5)));
+				let diff = end - start;
+				temp = end - start;
+				for (let i = 0; i < this.state.arrayLength; i++) {
+					let start = new Date(2000, 0, 1, parseInt(this.state.data[i]["TimeInBed"].substring(0, 2)), parseInt(this.state.data[i]["TimeInBed"].substring(3, 5)));
+					let end = new Date(2000, 0, 2, parseInt(this.state.data[i]["TimeToGetOutOfBed"].substring(0, 2)), parseInt(this.state.data[i]["TimeToGetOutOfBed"].substring(3, 5)));
+					let diff = end - start;
+					if (diff < temp)
+					{
+						temp = diff;
+					}
+				}
+			}
+			else{
+				let start = new Date(2000, 0, 1, parseInt(this.state.data[this.state.arrayLength - 1 - 0]["TimeInBed"].substring(0, 2)), parseInt(this.state.data[this.state.arrayLength - 1 - 0]["TimeInBed"].substring(3, 5)));
+				let end = new Date(2000, 0, 2, parseInt(this.state.data[this.state.arrayLength - 1 - 0]["TimeToGetOutOfBed"].substring(0, 2)), parseInt(this.state.data[this.state.arrayLength - 1 - 0]["TimeToGetOutOfBed"].substring(3, 5)));
+				let diff = end - start;
+				temp = end - start;
+				for (let i = 0; i < 7; i++) {
+					let start = new Date(2000, 0, 1, parseInt(this.state.data[this.state.arrayLength - 1 - i]["TimeInBed"].substring(0, 2)), parseInt(this.state.data[this.state.arrayLength - 1 - i]["TimeInBed"].substring(3, 5)));
+					let end = new Date(2000, 0, 2, parseInt(this.state.data[this.state.arrayLength - 1 - i]["TimeToGetOutOfBed"].substring(0, 2)), parseInt(this.state.data[this.state.arrayLength - 1 - i]["TimeToGetOutOfBed"].substring(3, 5)));
+					let diff = end - start;
+					if (diff < temp)
+					{
+						temp = diff;
+					}
+				}
+			}
+
+			var msec = temp
+			var hh = Math.floor(msec / 1000 / 60 / 60);
+			msec -= hh * 1000 * 60 * 60;
+			var mm = Math.floor(msec / 1000 / 60);
+			msec -= mm * 1000 * 60;
+			var ss = Math.floor(msec / 1000);
+			msec -= ss * 1000;
+			return hh + "hr " + mm + "min";
+		}
+	}
+
+	setMaxTimeInBed() {
+		if (this.state.apiReady === true) {
+			// console.log(this.state.data[0]["HowLongDidYouSleep"]);
+			let temp = 0;
+			if (this.state.arrayLength < 7) {
+				let start = new Date(2000, 0, 1, parseInt(this.state.data[0]["TimeInBed"].substring(0, 2)), parseInt(this.state.data[0]["TimeInBed"].substring(3, 5)));
+				let end = new Date(2000, 0, 2, parseInt(this.state.data[0]["TimeToGetOutOfBed"].substring(0, 2)), parseInt(this.state.data[0]["TimeToGetOutOfBed"].substring(3, 5)));
+				let diff = end - start;
+				temp = end - start;
+				for (let i = 0; i < this.state.arrayLength; i++) {
+					let start = new Date(2000, 0, 1, parseInt(this.state.data[i]["TimeInBed"].substring(0, 2)), parseInt(this.state.data[i]["TimeInBed"].substring(3, 5)));
+					let end = new Date(2000, 0, 2, parseInt(this.state.data[i]["TimeToGetOutOfBed"].substring(0, 2)), parseInt(this.state.data[i]["TimeToGetOutOfBed"].substring(3, 5)));
+					let diff = end - start;
+					if (diff > temp)
+					{
+						temp = diff;
+					}
+				}
+			}
+			else{
+				let start = new Date(2000, 0, 1, parseInt(this.state.data[this.state.arrayLength - 1 - 0]["TimeInBed"].substring(0, 2)), parseInt(this.state.data[this.state.arrayLength - 1 - 0]["TimeInBed"].substring(3, 5)));
+				let end = new Date(2000, 0, 2, parseInt(this.state.data[this.state.arrayLength - 1 - 0]["TimeToGetOutOfBed"].substring(0, 2)), parseInt(this.state.data[this.state.arrayLength - 1 - 0]["TimeToGetOutOfBed"].substring(3, 5)));
+				let diff = end - start;
+				temp = end - start;
+				for (let i = 0; i < 7; i++) {
+					let start = new Date(2000, 0, 1, parseInt(this.state.data[this.state.arrayLength - 1 - i]["TimeInBed"].substring(0, 2)), parseInt(this.state.data[this.state.arrayLength - 1 - i]["TimeInBed"].substring(3, 5)));
+					let end = new Date(2000, 0, 2, parseInt(this.state.data[this.state.arrayLength - 1 - i]["TimeToGetOutOfBed"].substring(0, 2)), parseInt(this.state.data[this.state.arrayLength - 1 - i]["TimeToGetOutOfBed"].substring(3, 5)));
+					let diff = end - start;
+					if (diff > temp)
+					{
+						temp = diff;
+					}
+				}
+			}
+
+			var msec = temp
+			var hh = Math.floor(msec / 1000 / 60 / 60);
+			msec -= hh * 1000 * 60 * 60;
+			var mm = Math.floor(msec / 1000 / 60);
+			msec -= mm * 1000 * 60;
+			var ss = Math.floor(msec / 1000);
+			msec -= ss * 1000;
+			return hh + "hr " + mm + "min";
+		}
+	}
+
+	setAverageTimeInBed() {
+		if (this.state.apiReady === true) {
+			// console.log(this.state.data[0]["HowLongDidYouSleep"]);
+			let temp = 0;
+			if (this.state.arrayLength < 7) {
+				for (let i = 0; i < this.state.arrayLength; i++) {
+					let start = new Date(2000, 0, 1, parseInt(this.state.data[i]["TimeInBed"].substring(0, 2)), parseInt(this.state.data[i]["TimeInBed"].substring(3, 5)));
+					let end = new Date(2000, 0, 2, parseInt(this.state.data[i]["TimeToGetOutOfBed"].substring(0, 2)), parseInt(this.state.data[i]["TimeToGetOutOfBed"].substring(3, 5)));
+					let diff = end - start;
+					temp += diff;
+				}
+				temp = temp / this.state.arrayLength;
+			}
+			else{
+				for (let i = 0; i < 7; i++) {
+					let start = new Date(2000, 0, 1, parseInt(this.state.data[this.state.arrayLength - 1 - i]["TimeInBed"].substring(0, 2)), parseInt(this.state.data[this.state.arrayLength - 1 - i]["TimeInBed"].substring(3, 5)));
+					let end = new Date(2000, 0, 2, parseInt(this.state.data[this.state.arrayLength - 1 - i]["TimeToGetOutOfBed"].substring(0, 2)), parseInt(this.state.data[this.state.arrayLength - 1 - i]["TimeToGetOutOfBed"].substring(3, 5)));
+					let diff = end - start;
+					temp += diff;
+				}
+				temp = temp / 7;
+			}
+			var msec = temp
+			var hh = Math.floor(msec / 1000 / 60 / 60);
+			msec -= hh * 1000 * 60 * 60;
+			var mm = Math.floor(msec / 1000 / 60);
+			msec -= mm * 1000 * 60;
+			var ss = Math.floor(msec / 1000);
+			msec -= ss * 1000;
+			return hh + "hr " + mm + "min";
+		}
+	}
+
 	render() {
 		return (
 			<table>
@@ -89,14 +239,14 @@ export default class Summary extends Component {
 				<tr>
 					<td className="alignleft">Total Sleep Time</td>
 					<td>{this.setMinTotalSleep()}</td>
-					<td></td>
+					<td>{this.setMaxTotalSleep()}</td>
 					<td>{this.setAverageTotalSleep()}</td>
 				</tr>
 				<tr>
 					<td className="alignleft">Time In Bed</td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td>{this.setMinTimeInBed()}</td>
+					<td>{this.setMaxTimeInBed()}</td>
+					<td>{this.setAverageTimeInBed()}</td>
 				</tr>
 				<tr>
 					<td className="alignleft">Sleep Efficiency</td>

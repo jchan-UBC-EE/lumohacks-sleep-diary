@@ -56,3 +56,6 @@ td {
 .alignleft {
   text-align: left;
 }
+#main {
+  padding: 10px 20px;
+}

@@ -33,7 +33,7 @@ export default class AccountCreate extends Component {
 
     handleSubmit(event) {
         event.preventDefault()
-        fetch('http://localhost:8080/check', {
+        fetch('/api/sign-up', {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -41,12 +41,20 @@ export default class AccountCreate extends Component {
             method: "POST",
             body: JSON.stringify(this.state)
         })
-            .then(this.setState({ home: true }))
+            .then(response => response.json())
+            .then(json => {
+                console.log(json)
+                if (json.confirmed === true) {
+                    window.location.replace("/");
+                } else {
+                    document.getElementById("error").innerHTML = "please try again";
+                }
+            })
     }
 
     render() {
         return (
-            <div>
+            <div className="app-container">
                 <div>
                     <form onSubmit={this.handleSubmit}>
                         <div>
@@ -72,6 +80,7 @@ export default class AccountCreate extends Component {
                         <button className="btn" type="button"> Sign-Up </button>
                     </Link>
                 </div>
+                <p id="error"></p>
                 <br /><br />
             </div>
         );

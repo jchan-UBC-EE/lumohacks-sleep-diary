@@ -8,7 +8,7 @@ import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import bodyParser from 'body-parser';
 import routes from './routes';
-import { loginQuery } from './database';
+import { loginQuery, signupQuery } from './database';
 import NotFoundPage from './components/NotFoundPage';
 
 // initialize the server and configure support for ejs templates
@@ -23,18 +23,27 @@ app.use(Express.static(path.join(__dirname, 'static')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.post('/api/login', function (req, res) {
+let loggedin = ''; 
+
+app.post('/api/login', (req, res) => {
   let validation = '';
-  loginQuery(req.body, function (err, content) {
+  loginQuery(req.body, (err, content) => {
     if (err) {
       console.log(err);
     } else {
       validation = content;
+      loggedin = req.body.UserName;
+      console.log(loggedin)
       console.log(validation);
       res.send(validation);
     }
   })
 });
+
+app.post('/api/sign-up', (req, res) => {
+  signupQuery(req.body)
+  res.send({confirmed: true});
+})
 
 // universal routing and rendering
 app.get('*', (req, res) => {
@@ -70,7 +79,7 @@ app.get('*', (req, res) => {
 });
 
 // start the server
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 const env = process.env.NODE_ENV || 'production';
 server.listen(port, err => {
   if (err) {

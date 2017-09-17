@@ -35,6 +35,11 @@ let loginQuery = (login, callback) => {
     });
 }
 
+let signupQuery = (login, callback) => {
+    console.log('hi')
+}
+
 export {
-    loginQuery
+    loginQuery,
+    signupQuery
 }

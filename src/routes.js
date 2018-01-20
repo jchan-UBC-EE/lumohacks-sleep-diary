@@ -1,23 +1,27 @@
-'use strict';
+import React from 'react'
+import { Switch, Redirect, BrowserRouter, Route } from 'react-router-dom'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import AccountContainer from './container/AccountContainer';
-import AppContainer from './container/AppContainer';
-import AccountCreate from './components/AccountCreate';
-import Summary from './components/Summary'
+import App from './containers/App'
+import Login from './components/Login'
 
-const routes = (
-  <Router>
-    <div>
+export const SIGN_IN = '/signin'
+export const LANDING = '/'
+export const HOME = '/home'
+export const ACCOUNT = '/account'
+
+const Routes = (props) => (
+  <MuiThemeProvider>
+    <BrowserRouter>
+      <div>
       <Switch>
-      <Route exact path="/" component={AccountContainer} />
-      <Route exact path="/sign-up" component={AccountCreate} />
-      <Route exact path="/sleeplog" component={AppContainer} />
-      <Route exact path="/summary" component={Summary} />
-      </Switch>
-    </div>
-  </Router>
-);
+        <Route path='/login' component={Login} />
+        <Route path="/app/home" component={App}/>
+        <Redirect from="/" to="/login"/>
+        </Switch>
+      </div>
+    </BrowserRouter>
+  </MuiThemeProvider>
+)
 
-export default routes;
+export default Routes

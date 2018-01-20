@@ -1,56 +1,70 @@
-'use strict';
+/* global localStorage */
+import React, { Component } from 'react'
+import { FontIcon, RaisedButton } from 'material-ui'
 
-import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { firebaseAuth } from '../containers/firebase-config'
+import { loginWithGoogle } from '../util/googleAPI'
+
+const firebaseAuthKey = 'firebaseAuthInProgress'
+const appTokenKey = 'appToken'
 
 export default class Login extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            UserName: '',
-            Password: '',
-        }
-        this.setUser = this.setUser.bind(this);
-        this.setPass = this.setPass.bind(this);
+  constructor (props) {
+    super(props)
+    this.state = {
+      splashScreen: false
     }
+    this.handleGoogleLogin = this.handleGoogleLogin.bind(this)
+  }
 
-    setUser(event) {
-        this.setState({ UserName: event.target.value })
-    }
+  handleGoogleLogin () {
+    loginWithGoogle()
+            .catch((error) => {
+              alert(error)
+              localStorage.removeItem(firebaseAuthKey)
+            })
+    localStorage.setItem(firebaseAuthKey, '1')
+  }
 
-    setPass(event) {
-        this.setState({ Password: event.target.value })
+  componentWillMount () {
+    if (localStorage.getItem(appTokenKey)) {
+      this.props.history.push('/app/home')
+      return
     }
+    firebaseAuth().onAuthStateChanged(user => {
+      if (user) {
+        console.log('User signed in: ', JSON.stringify(user))
+        localStorage.removeItem(firebaseAuthKey)
+        localStorage.setItem(appTokenKey, user.uid)
+        this.props.history.push('/app/home')
+      }
+    })
+  }
 
-    render() {
-        return (
-            <div>
-                <div>
-                    <form onSubmit={this.props.handleSubmit(this.state)}>
-                        <div>
-                            <br />
-                            <h2> Login </h2>
-                            <br />
-                            <label><b>Username</b></label>
-                            <input type="text" placeholder="Enter Username" name="uname" onChange={this.setUser} required />
-                        </div>
-                        <div>
-                            <label><b>Password</b></label>
-                            <input type="password" placeholder="Enter Password" name="psw" onChange={this.setPass} required />
-                        </div>
-                        <div>
-                            <input className="btn" type="submit" value="Submit" />
-                        </div>
-                    </form>
-                </div>
-                <br />
-                <div>
-                    <Link to={'/sign-up'}>
-                        <button className="btn" type="button"> Sign-Up </button>
-                    </Link>
-                </div>
-                <br />
-            </div>
-        );
-    }
+  render () {
+    //console.log(firebaseAuthKey + '=' + localStorage.getItem(firebaseAuthKey))
+    if (localStorage.getItem(firebaseAuthKey) === '1') return <SplashScreen />
+    return <LoginPage handleGoogleLogin={this.handleGoogleLogin} />
+  }
 }
+
+const iconStyles = {
+  color: '#ffffff'
+}
+
+const LoginPage = ({handleGoogleLogin}) => (
+  <div>
+    <h1>Login</h1>
+    <div>
+      <RaisedButton
+        label='Sign in with Google'
+        labelColor={'#ffffff'}
+        backgroundColor='#dd4b39'
+        icon={<FontIcon className='fa fa-google-plus' style={iconStyles} />}
+        onClick={handleGoogleLogin}
+            />
+    </div>
+  </div>
+)
+
+const SplashScreen = () => (<p>Loading...</p>)
